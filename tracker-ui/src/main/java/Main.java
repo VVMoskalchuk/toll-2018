@@ -13,7 +13,6 @@ public class Main {
             point.setLat(45);
             System.out.println(point.toJson());
             Thread.sleep(1000);
-
             String jsonInString = point.toJson().toString();
             Object obj = point.fromJson(jsonInString, Object.class);
             System.out.println(obj);
