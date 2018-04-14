@@ -61,4 +61,8 @@ project(':tracker-ui') {
         compile project(':common')
     }
 
+    task fatJarForTracUI(type: OneJar) {
+        mainClass = 'jdev.tracker.Main'
+    }
+
 }
