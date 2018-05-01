@@ -20,26 +20,14 @@ public class ServiceStorage {
 
     @Autowired
     private ServiceGPS serviceGPS;
-    private BlockingDeque<String> queue =  new LinkedBlockingDeque<> (100);
+  //  private BlockingDeque<String> queue =  new LinkedBlockingDeque<> (100);
 
-//    @PostConstruct
-//    private void init(){
-//        try {
-//            serviceGPS.readFileCoordinates();
-//        } catch (IOException e) {
-//            e.printStackTrace ();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace ();
-//        }
-//
-//    }
+    @PostConstruct
+    private void init() throws IOException, InterruptedException {
+        serviceGPS.readFileCoordinates ();
+        serviceGPS.serviceStorage ();
 
-    @Scheduled(fixedDelay = 2000)
-    void ServiceStorage() throws InterruptedException {
-        //тут запрашиваем от GPS
-        System.out.println (queue.take());
-
-    }
+}
 
 
 }
