@@ -1,16 +1,13 @@
-package jdev.tracker.services;
+package services;
 
 import java.io.*;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 
-import jdev.dto.PointDTO;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by jdev on 26.03.2017.
- */
+
 @Service
 public class ServiceGPS {
 
@@ -25,6 +22,14 @@ public class ServiceGPS {
         }
     }
 
+    BlockingDeque <String> allCoordinates() throws IOException, InterruptedException {
+        String line = null;
+        BufferedReader br = new BufferedReader(new FileReader("coordinates.txt"));
+        while((line = br.readLine()) != null){
+            queue.put(line.toString ());
+        }
+        return queue;
+    }
 
     //тут перадаем  в очередь
     @Scheduled(fixedDelay = 2000)

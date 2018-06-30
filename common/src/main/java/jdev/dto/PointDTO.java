@@ -10,25 +10,25 @@ import java.io.IOException;
  * Created by jdev on 06.03.2017.
  */
 public class PointDTO {
-    private String lat;
-    private String lon;
+    private int lat;
+    private int lon;
     private String autoId;
     private long time;
 
 
-    public String getLat() {
+    public int getLat() {
         return lat;
     }
 
-    public void setLat(String lat) {
+    public void setLat(int lat) {
         this.lat = lat;
     }
 
-    public String getLon() {
+    public int getLon() {
         return lon;
     }
 
-    public void setLon(String lon) {
+    public void setLon(int lon) {
         this.lon = lon;
     }
 
