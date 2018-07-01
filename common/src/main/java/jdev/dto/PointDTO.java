@@ -6,29 +6,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
-/**
- * Created by jdev on 06.03.2017.
- */
+
 public class PointDTO {
-    private int lat;
-    private int lon;
+    private double lat;
+    private double lon;
     private String autoId;
     private long time;
 
 
-    public int getLat() {
+    public double getLat() {
         return lat;
     }
 
-    public void setLat(int lat) {
+    public void setLat(double lat) {
         this.lat = lat;
     }
 
-    public int getLon() {
+    public double getLon() {
         return lon;
     }
 
-    public void setLon(int lon) {
+    public void setLon(double lon) {
         this.lon = lon;
     }
 
