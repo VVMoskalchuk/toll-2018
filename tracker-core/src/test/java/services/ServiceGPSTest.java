@@ -17,27 +17,7 @@ public class ServiceGPSTest {
     public void allCoordinates() throws IOException, InterruptedException {
         serviceGPS  = new ServiceGPS();
         assertNotNull(serviceGPS.allCoordinates("coordinates.txt"));
+        assertEquals(40, serviceGPS.allCoordinates("coordinates.txt").size());
 
-
-    }
-
-    @Test
-    public void readFileCoordinates() {
-    }
-
-    @Test
-    public void serviceStorage() {
-    }
-
-    @Test
-    public void allCoordinates1() {
-    }
-
-    @Test
-    public void readFileCoordinates1() {
-    }
-
-    @Test
-    public void serviceStorage1() {
     }
 }
