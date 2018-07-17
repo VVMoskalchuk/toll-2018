@@ -25,7 +25,7 @@ public class DataSendService {
 
 
     @Scheduled(fixedDelay = TIME_OUT)
-    private void sendDTO() throws InterruptedException, IOException {
+    public void sendDTO() throws InterruptedException, IOException {
         int i=0;
 
         BlockingDeque <PointDTO> queue = serviceStorage.allCoordinates ();

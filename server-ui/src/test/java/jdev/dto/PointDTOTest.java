@@ -7,9 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created by pinta on 05.06.2017.
- */
+
 public class PointDTOTest {
     private String expected = "{\"lat\":75.0,\"lon\":57.0,\"autoId\":\"a856op\"}";
     private String autoaId = "a856op";

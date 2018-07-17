@@ -22,7 +22,7 @@ public class ServiceGPS {
         }
     }
 
-    BlockingDeque <String> allCoordinates() throws IOException, InterruptedException {
+    public BlockingDeque <String> allCoordinates() throws IOException, InterruptedException {
         String line = null;
         BufferedReader br = new BufferedReader(new FileReader("coordinates.txt"));
         while((line = br.readLine()) != null){
@@ -31,9 +31,18 @@ public class ServiceGPS {
         return queue;
     }
 
+    public BlockingDeque <String> allCoordinates(String file) throws IOException, InterruptedException {
+        String line = null;
+        BufferedReader br = new BufferedReader(new FileReader(new File(getClass().getClassLoader().getResource(file).getFile())));
+        while((line = br.readLine()) != null){
+            queue.put(line.toString ());
+        }
+        return queue;
+    }
+
     //тут перадаем  в очередь
     @Scheduled(fixedDelay = 2000)
-    void readFileCoordinates() throws InterruptedException, IOException {
+    public void readFileCoordinates() throws InterruptedException, IOException {
         String line = null;
         BufferedReader br = new BufferedReader(new FileReader("coordinates.txt"));
         while((line = br.readLine()) != null){
