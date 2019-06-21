@@ -6,9 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
-/**
- * Created by jdev on 06.03.2017.
- */
+
 public class PointDTO {
     private double lat;
     private double lon;

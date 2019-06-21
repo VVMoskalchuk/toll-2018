@@ -1,68 +1,105 @@
 subprojects{
     apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
     repositories {
         mavenCentral()
         mavenLocal()
+        ext {
+            jettyVersion = "9.4.1.v20170120"
+        }
     }
     dependencies {
+        compile group: 'org.springframework', name: 'spring-context', version: '4.3.7.RELEASE'
         testCompile group: 'junit', name: 'junit', version: '4.12'
-
     }
 }
-
-project(':common') {
-    dependencies{
-        compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.7'
-    }
-}
-
-
-project(':server-core') {
-    dependencies {
-        compile project(':common')
-    }
-}
-
-
-project(':server-ui') {
-    dependencies {
-        compile project(':common')
-    }
-}
-
-apply plugin: 'gradle-one-jar'
 
 buildscript {
     repositories {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.github.rholder:gradle-one-jar:1.0.4'
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE")
     }
 }
-project(':tracker-core') {
-    apply plugin: 'java-library-distribution'
-    apply plugin: 'gradle-one-jar'
+
+project(':common') {
+    dependencies{
+        compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.7'
+        compile group: 'commons-io', name: 'commons-io', version: '2.5'
+        compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+        compile("org.springframework.boot:spring-boot-devtools")
+        compile("org.springframework.boot:spring-boot-starter-test")
+
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+    //    сompile group: 'junit', name: 'junit', version: '4.12'
+
+
+
+    }
+}
+
+
+project(':server-core') {
+
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
 
     dependencies {
+        compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+        compile("org.springframework.boot:spring-boot-devtools")
         compile project(':common')
+        testCompile("org.springframework.boot:spring-boot-starter-test")
     }
+}
 
-    task fatJar(type: OneJar) {
-        mainClass = 'jdev.tracker.Main'
+
+project (':server-ui'){
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    dependencies{
+        compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+        compile("org.springframework.boot:spring-boot-starter-security")
+        compile("org.springframework.boot:spring-boot-devtools")
+        compile project(':common')
+        testCompile("org.springframework.boot:spring-boot-starter-test")
+        testCompile("org.springframework.security:spring-security-test")
+    }
+    jar {
+        baseName = 'server-ui-boot'
+        version =  '0.1.0'
+    }
+}
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE")
+    }
+}
+
+project(':tracker-core') {
+
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+
+    dependencies {
+        compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+        compile("org.springframework.boot:spring-boot-devtools")
+        compile project(':common')
+        testCompile("org.springframework.boot:spring-boot-starter-test")
     }
 }
 
 project(':tracker-ui') {
     apply plugin: 'java-library-distribution'
-    apply plugin: 'gradle-one-jar'
+//    apply plugin: 'gradle-one-jar'
 
     dependencies {
         compile project(':common')
-    }
-
-    task fatJarForTracUI(type: OneJar) {
-        mainClass = 'jdev.tracker.Main'
     }
 
 }
